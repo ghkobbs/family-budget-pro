@@ -16,7 +16,20 @@ export default function Login() {
 
     return (
         <>
-            <Head title="Sign in to your account" />
+            <Head>
+                <title>Login - Family Budget Pro</title>
+                <meta name="description" content="Log in to Family Budget Pro and start managing your family finances with smart budgeting and expense tracking." />
+                <meta name="keywords" content="login, family budget, expense tracking, budgeting app" />
+                <meta property="og:title" content="Login - Family Budget Pro" />
+                <meta property="og:description" content="Log in to Family Budget Pro and start managing your family finances." />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://ourfamilyfinances.com/login" />
+                <meta property="og:image" content="https://ourfamilyfinances.com/og-fbp-image.png" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Login - Family Budget Pro" />
+                <meta name="twitter:description" content="Log in to Family Budget Pro and start managing your family finances." />
+                <meta name="twitter:image" content="https://ourfamilyfinances.com/og-fbp-image.png" />
+            </Head>
             <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
                 <div className="w-full max-w-md p-8 rounded-2xl shadow-xl bg-white dark:bg-gray-900">
                     <div className="mb-8 text-center">
