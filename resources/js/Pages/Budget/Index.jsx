@@ -599,35 +599,30 @@ function BudgetCategorySection({ category, budgetId }) {
 }
 
 export default function BudgetIndex({ auth, budgets, selectedBudget, categories }) {
-    const { data, setData, post, processing } = useForm({
-        month_year: ''
-    });
-    const [showAddItemModal, setShowAddItemModal] = useState(false);
-
+	const [showAddItemModal, setShowAddItemModal] = useState(false);
+	
+		const currentMonthYear = new Date(selectedBudget.data.month_year + '-01'); // Ensure date parsing is correct
+		const nextMonth = new Date(currentMonthYear.getFullYear(), currentMonthYear.getMonth() + 1, 1);
+		const nextMonthDate = nextMonth.toISOString().slice(0, 10); // YYYY-MM-DD
+	
+    const { data, post, processing } = useForm({
+        month_year: nextMonthDate
+		});
+	
     const createNextMonthBudget = () => {
-        if (!selectedBudget) return;
-
-        const currentMonthYear = new Date(selectedBudget.data.month_year + '-01'); // Ensure date parsing is correct
-        const nextMonth = new Date(currentMonthYear.getFullYear(), currentMonthYear.getMonth() + 1, 1);
-        const nextMonthDate = nextMonth.toISOString().slice(0, 10); // YYYY-MM-DD
-
-        setData('month_year', nextMonthDate);
+			if (!selectedBudget) return;
         
         toast.promise(
             post(route('budgets.store'), {
-                data,
-                onSuccess: () => {
-                    // Inertia handles redirection to the new budget, or a fresh page load
+							onSuccess: () => {
+									toast.success('Next month\'s budget created successfully!');
                 },
-                onError: (err) => {
-                    console.log(nextMonthDate);
-                    console.error('Error creating next month budget:', err);
+							onError: (err) => {
+									toast.error(err.month_year || 'Error creating next month\'s budget.');
                 }
             }),
             {
-                loading: 'Creating next month\'s budget...',
-                success: 'Next month\'s budget created successfully!',
-                error: 'Error creating next month\'s budget.'
+                loading: 'Creating next month\'s budget...'
             }
         );
     };
