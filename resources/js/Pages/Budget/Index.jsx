@@ -669,7 +669,7 @@ export default function BudgetIndex({ auth, budgets, selectedBudget, categories 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 text-gray-900 mb-6 flex flex-col sm:flex-row justify-between items-center sticky top-0">
-                        <h1 className="text-2xl font-bold mb-4 sm:mb-0">{selectedBudget.data.name}</h1>
+											<h1 className="text-2xl font-bold mb-4 sm:mb-0">{selectedBudget.data.name}</h1>
                         <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
                             <div className="relative w-full sm:w-auto">
                                 <label htmlFor="budget-selector" className="sr-only">Select Budget</label>

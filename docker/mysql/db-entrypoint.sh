@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+
+DB_NAME="${MYSQL_DATABASE:-family_budget}"
+DB_USER="${MYSQL_USER:-fbp_user}"
+DB_PASS="${MYSQL_PASSWORD:-fb_password}"
+
+mysql -uroot -p"${MYSQL_ROOT_PASSWORD}" <<-EOSQL
+CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;
+CREATE USER IF NOT EXISTS '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASS}';
+GRANT ALL PRIVILEGES ON \`${DB_NAME}\`.* TO '${DB_USER}'@'%';
+FLUSH PRIVILEGES;
+EOSQL
+
